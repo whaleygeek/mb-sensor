@@ -24,8 +24,11 @@ def config():
 
 def run():
     seq = 0
+    on = False
     while True:
-        if button_a.is_pressed():
+        if button_a.was_pressed():
+            on = not on
+        if on:
             display.clear()
             x,y,z = accelerometer.get_x(), accelerometer.get_y(), accelerometer.get_z()
             x,y,z = str(x), str(y), str(z)

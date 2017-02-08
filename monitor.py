@@ -20,8 +20,8 @@ import time
 #for n in names:
 #    notes.append(pygame.mixer.Sound('sounds/%s.wav' % n))
 
-#FILENAME = "log.csv"
-#f = open(FILENAME, "a+")
+FILENAME = "log.csv"
+f = open(FILENAME, "a+")
 
 #playing = False
 #index = 0
@@ -32,8 +32,8 @@ while True:
     row = microbit.read()
     if row is not None:
         try:
-            a,s,x,y,z = row.split(',')
-            a,s,x,y,z = int(a), int(s), int(x), int(y), int(z)
+            a,s,x,y,z,t = row.split(',')
+            a,s,x,y,z,t = int(a), int(s), int(x), int(y), int(z), int(t)
 
             #x += 1024
             #x = min(x, 2048) # 0..2048
@@ -56,9 +56,9 @@ while True:
             #    playing = False
             #    index = (index + 1) % len(note)
 
-            print(a,s,x,y,z)
-            #f.write("%d,%d,%d\n" % (x,y,z))
-            #f.flush()
+            print(a,s,x,y,z,t)
+            f.write("%d,%d,%d,%d,%d,%d\n" % (a,s,x,y,z,t))
+            f.flush()
 
             #now = time.time()
             #if now > next_update:
