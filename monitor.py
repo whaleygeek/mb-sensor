@@ -1,15 +1,15 @@
 import microbit # will auto connect
-import pygame
+#import pygame
 import time
 
-RED = (255,0,0)
-GREEN = (0,255,0)
-BLACK = (0,0,0)
-WIDTH = 10
-RATE = 0.01
+#RED = (255,0,0)
+#GREEN = (0,255,0)
+#BLACK = (0,0,0)
+#WIDTH = 10
+#RATE = 0.05
 
-pygame.init()
-surface = pygame.display.set_mode((1024, 512))
+#pygame.init()
+#surface = pygame.display.set_mode((1024, 512))
 
 
 #pygame.mixer.pre_init(22050, -16, 2, 1024)
@@ -20,31 +20,30 @@ surface = pygame.display.set_mode((1024, 512))
 #for n in names:
 #    notes.append(pygame.mixer.Sound('sounds/%s.wav' % n))
 
-FILENAME = "log.csv"
-f = open(FILENAME, "a+")
+#FILENAME = "log.csv"
+#f = open(FILENAME, "a+")
 
 #playing = False
 #index = 0
 
-next_update = time.time() + RATE
+#next_update = time.time() + RATE
 
 while True:
     row = microbit.read()
     if row is not None:
         try:
-            x,y,z = row.split(',')
-            x,y,z = int(x), int(y), int(z)
+            a,s,x,y,z = row.split(',')
+            a,s,x,y,z = int(a), int(s), int(x), int(y), int(z)
 
-            x += 1024
-            x = min(x, 2048) # 0..2048
-            x = max(x, 0)
-            x /= 2
+            #x += 1024
+            #x = min(x, 2048) # 0..2048
+            #x = max(x, 0)
+            #x /= 2
 
-            y += 1024
-            y = min(y, 2048)
-            y = max(y, 0)
-            y /= 4
-            #print(x)
+            #y += 1024
+            #y = min(y, 2048)
+            #y = max(y, 0)
+            #y /= 4
 
             #x = x / (2048/len(notes))
             #x = min(x, len(notes)-1)
@@ -57,16 +56,16 @@ while True:
             #    playing = False
             #    index = (index + 1) % len(note)
 
-            #print(x,y,z)
+            print(a,s,x,y,z)
             #f.write("%d,%d,%d\n" % (x,y,z))
             #f.flush()
 
-            now = time.time()
-            if now > next_update:
-                next_update = now + RATE
-                surface.fill(BLACK)
-                pygame.draw.rect(surface, GREEN, (x, y, WIDTH, WIDTH))
-                pygame.display.update()
+            #now = time.time()
+            #if now > next_update:
+            #    next_update = now + RATE
+            #    #surface.fill(BLACK)
+            #    pygame.draw.rect(surface, GREEN, (x, y, WIDTH, WIDTH))
+            #    pygame.display.update()
 
         except ValueError as e:
             print("Can't unpack:%s" % row)

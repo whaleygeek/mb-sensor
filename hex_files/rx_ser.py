@@ -10,6 +10,8 @@ def run():
     while True:
         msg = radio.receive()
         if msg is not None:
+            display.set_pixel(2,2,9)
             print(msg)
+            display.clear()
 
 run()
